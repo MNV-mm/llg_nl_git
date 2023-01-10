@@ -188,7 +188,7 @@ Ly = 40 # 30 80 40
 #FS_1, FS_3, FS_3_1, FS, e_v = DD_Hd.pe_EF(5,30,1,Lx,Ly)
 #mesh = FS.mesh()
 
-mesh = Mesh("/home/mnv/Documents/python_doc/llg_nl/MESH.xml")
+mesh = Mesh("/home/llg_nl/MESH.xml")
 SL_mesh = RectangleMesh(Point(-Lx/2,-Ly/2),Point(Lx/2,Ly/2),int(2*Lx),int(2*Ly))
 
 z_max = 0.5
@@ -218,8 +218,8 @@ FS_3_1 = FunctionSpace(mesh_3d, El_3_1)
 e_v = Function(FS)
 dedz_v = Function(FS)
 
-E_series = TimeSeries('/home/mnv/Documents/python_doc/llg_nl/E_mid_20')
-dEdz_series = TimeSeries('/home/mnv/Documents/python_doc/llg_nl/E_mid_20_dEdz')
+E_series = TimeSeries('/home/llg_nl/E_mid_20')
+dEdz_series = TimeSeries('/home/llg_nl/E_mid_20_dEdz')
 
 E_series.retrieve(e_v.vector(),0)
 dEdz_series.retrieve(dedz_v.vector(),0)
@@ -333,8 +333,8 @@ def my_boundary(x, on_boundary):
 
 BC = DirichletBC(FS, ub, boundary)
 # Define initial value
-time_old = TimeSeries('/media/mnv/A2E41E9EE41E74AF/series_old/m')
-time_new = TimeSeries('/media/mnv/A2E41E9EE41E74AF/series_new/m')
+time_old = TimeSeries('/home/llg_nl/series_old/m')
+time_new = TimeSeries('/home/llg_nl/series_new/m')
 
 in_type = 'old'
 if in_type == 'old':
@@ -358,7 +358,7 @@ Z = h/dd/2
 
 idx, space_top, slp_pot, trace_space, trace_matrix = DD_Hd.s_chg_prep(SL_space, FS_1, FS_3_1, FS_3_1, FS, Z)
 hd_s = DD_Hd.s_chg(m3, SL_space, FS_1, FS_3_1, FS_3_1, FS, idx, space_top, slp_pot, trace_space, trace_matrix)
-# vtkfile_hd_s = File('/media/mnv/A2E41E9EE41E74AF/graphs/hd_s.pvd')
+# vtkfile_hd_s = File('/home/llg_nl/graphs/hd_s.pvd')
 # vtkfile_hd_s << hd_s
 
 hd_ext_expr = funcs_2.n_pair(Ly, l, Z, 0, 4)
@@ -366,7 +366,7 @@ hd_ext = project(hd_ext_expr, FS)
 vtkfile_Hd_ext = File('/media/mnv/A2E41E9EE41E74AF/graphs/Hd_ext.pvd')
 vtkfile_Hd_ext << hd_ext
 H_st = project(Expression(('0', '0', '-10/20*x[1]'), degree = 4),FS)
-# vtkfile_hd_ext = File('/media/mnv/A2E41E9EE41E74AF/graphs/hd.pvd')
+# vtkfile_hd_ext = File('/home/llg_nl/graphs/hd.pvd')
 # vtkfile_hd_ext << hd_ext
 
 e_f = e_v # project(e_v,FS)
@@ -411,14 +411,14 @@ hy = project(Hy_expr,FS_1)
 #u_n = Function(V)
 #u_n1, u_n2, u_n3 = split(u_n)
 #/media/mnv/A2E41E9EE41E74AF/
-vtkfile_m = File('/media/mnv/A2E41E9EE41E74AF/graphs/m.pvd')
-vtkfile_cr = File('/media/mnv/A2E41E9EE41E74AF/graphs/cross.pvd')
-vtkfile_diff = File('/media/mnv/A2E41E9EE41E74AF/graphs/diff.pvd')
-vtkfile_hd_v = File('/media/mnv/A2E41E9EE41E74AF/graphs/hd_v.pvd')
-vtkfile_hd_s = File('/media/mnv/A2E41E9EE41E74AF/graphs/hd_s.pvd')
+vtkfile_m = File('/home/llg_nl/graphs/m.pvd')
+vtkfile_cr = File('/home/llg_nl/graphs/cross.pvd')
+vtkfile_diff = File('/home/llg_nl/graphs/diff.pvd')
+vtkfile_hd_v = File('/home/llg_nl/graphs/hd_v.pvd')
+vtkfile_hd_s = File('/home/llg_nl/graphs/hd_s.pvd')
 
-vtkfile_e = File('/media/mnv/A2E41E9EE41E74AF/graphs/e.pvd')
-vtkfile_P = File('/media/mnv/A2E41E9EE41E74AF/graphs/P.pvd')
+vtkfile_e = File('/home/llg_nl/graphs/e.pvd')
+vtkfile_P = File('/home/llg_nl/graphs/P.pvd')
 # vtkfile_l = File('graphs/l.pvd')
 #vtkfile_m << m
 vtkfile_e << e_f
@@ -446,7 +446,7 @@ tol = 5E-8
 theta = 1
 E_old = 0
 th = Constant(theta)
-N_f = 100000
+N_f = 100
 n = FacetNormal(mesh)
 oo = Constant(0)
 PI = Constant(math.pi)
@@ -461,7 +461,7 @@ diffr = Function(FS)
 Hd = Function(FS)
 
 title = 't' + ', '  + 'w_ex' + ', '  + 'w_a' + ', '  + 'w_hd_1' + ', '  + 'w_hd_2' +  ', '  + 'w_me' +  ', ' + 'diff\n'
-file_txt = open('/media/mnv/A2E41E9EE41E74AF/avg_table.txt','w')
+file_txt = open('/home/llg_nl/avg_table.txt','w')
 file_txt.write(title)
 file_txt.close()
 while j <= 10:
@@ -506,7 +506,7 @@ while j <= 10:
         vtkfile_hd_v << (phi, T)
         #vtkfile_hd_s << hd_s
         vtkfile_diff << (diffr, T)
-        file_txt = open('/media/mnv/A2E41E9EE41E74AF/avg_table.txt','a')
+        file_txt = open('/home/llg_nl/avg_table.txt','a')
         file_txt.write(data)
         file_txt.close()
         #vtkfile_cr << cr
