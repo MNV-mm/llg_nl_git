@@ -363,7 +363,7 @@ hd_s = DD_Hd.s_chg(m3, SL_space, FS_1, FS_3_1, FS_3_1, FS, idx, space_top, slp_p
 
 hd_ext_expr = funcs_2.n_pair(Ly, l, Z, 0, 4)
 hd_ext = project(hd_ext_expr, FS)
-vtkfile_Hd_ext = File('/media/mnv/A2E41E9EE41E74AF/graphs/Hd_ext.pvd')
+vtkfile_Hd_ext = File('/home/llg_nl/graphs/Hd_ext.pvd')
 vtkfile_Hd_ext << hd_ext
 H_st = project(Expression(('0', '0', '-10/20*x[1]'), degree = 4),FS)
 # vtkfile_hd_ext = File('/home/llg_nl/graphs/hd.pvd')
@@ -461,7 +461,7 @@ diffr = Function(FS)
 Hd = Function(FS)
 
 title = 't' + ', '  + 'w_ex' + ', '  + 'w_a' + ', '  + 'w_hd_1' + ', '  + 'w_hd_2' +  ', '  + 'w_me' +  ', ' + 'diff\n'
-file_txt = open('/home/llg_nl/avg_table.txt','w')
+file_txt = open('/home/llg_nl/graphs/avg_table.txt','w')
 file_txt.write(title)
 file_txt.close()
 while j <= 10:
