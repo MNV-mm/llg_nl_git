@@ -549,7 +549,7 @@ while j <= 10:
     T = T + dt
 
 
-plot(v3)
+#plot(v3)
 # vtkfile_m << m
 # vtkfile_phi << phi
 # P = project(m*(m1.dx(0) + m2.dx(1)) - as_vector((m1*m1.dx(0)+m2*m1.dx(1), m1*m2.dx(0)+m2*m2.dx(1), m1*m3.dx(0)+m2*m3.dx(1))), FS)
