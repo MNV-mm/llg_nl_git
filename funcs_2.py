@@ -42,7 +42,7 @@ def n_pair(Ly1,l1,Z1,Z01,n):
     p1 = sp.plot(hy.subs([(l,l1), (z,Z01), (Z,Z1), (Ly,Ly1)]),(y,-Ly1/2,Ly1/2), show = False)
     p2 = sp.plot(hz.subs([(l,l1), (z,Z01), (Z,Z1), (Ly,Ly1)]),(y,-Ly1/2,Ly1/2), show = False)
     p1.append(p2[0])
-    p1.show()
+    #p1.show()
     
     hy_c = sp.ccode(hy)
     hz_c = sp.ccode(hz)
