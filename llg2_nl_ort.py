@@ -461,7 +461,7 @@ diffr = Function(FS)
 Hd = Function(FS)
 
 title = 't' + ', '  + 'w_ex' + ', '  + 'w_a' + ', '  + 'w_hd_1' + ', '  + 'w_hd_2' +  ', '  + 'w_me' +  ', ' + 'diff\n'
-file_txt = open('/home/llg_nl/graphs/avg_table.txt','w')
+file_txt = open('/home/mnv/llg_nl/graphs/avg_table.txt','w')
 file_txt.write(title)
 file_txt.close()
 while j <= 10:
