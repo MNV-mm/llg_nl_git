@@ -506,7 +506,7 @@ while j <= 10:
         vtkfile_hd_v << (phi, T)
         #vtkfile_hd_s << hd_s
         vtkfile_diff << (diffr, T)
-        file_txt = open('/home/llg_nl/avg_table.txt','a')
+        file_txt = open('/home/mnv/llg_nl/avg_table.txt','a')
         file_txt.write(data)
         file_txt.close()
         #vtkfile_cr << cr
