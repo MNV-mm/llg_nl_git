@@ -188,7 +188,7 @@ Ly = 40 # 30 80 40
 #FS_1, FS_3, FS_3_1, FS, e_v = DD_Hd.pe_EF(5,30,1,Lx,Ly)
 #mesh = FS.mesh()
 
-mesh = Mesh("/home/llg_nl/MESH.xml")
+mesh = Mesh("/home/mnv/llg_nl/MESH.xml")
 SL_mesh = RectangleMesh(Point(-Lx/2,-Ly/2),Point(Lx/2,Ly/2),int(2*Lx),int(2*Ly))
 
 z_max = 0.5
@@ -218,8 +218,8 @@ FS_3_1 = FunctionSpace(mesh_3d, El_3_1)
 e_v = Function(FS)
 dedz_v = Function(FS)
 
-E_series = TimeSeries('/home/llg_nl/E_mid_20')
-dEdz_series = TimeSeries('/home/llg_nl/E_mid_20_dEdz')
+E_series = TimeSeries('/home/mnv/llg_nl/E_mid_20')
+dEdz_series = TimeSeries('/home/mnv/llg_nl/E_mid_20_dEdz')
 
 E_series.retrieve(e_v.vector(),0)
 dEdz_series.retrieve(dedz_v.vector(),0)
@@ -333,8 +333,8 @@ def my_boundary(x, on_boundary):
 
 BC = DirichletBC(FS, ub, boundary)
 # Define initial value
-time_old = TimeSeries('/home/llg_nl/series_old/m')
-time_new = TimeSeries('/home/llg_nl/series_new/m')
+time_old = TimeSeries('/home/mnv/llg_nl/series_old/m')
+time_new = TimeSeries('/home/mnv/llg_nl/series_new/m')
 
 in_type = 'old'
 if in_type == 'old':
@@ -358,15 +358,15 @@ Z = h/dd/2
 
 idx, space_top, slp_pot, trace_space, trace_matrix = DD_Hd.s_chg_prep(SL_space, FS_1, FS_3_1, FS_3_1, FS, Z)
 hd_s = DD_Hd.s_chg(m3, SL_space, FS_1, FS_3_1, FS_3_1, FS, idx, space_top, slp_pot, trace_space, trace_matrix)
-# vtkfile_hd_s = File('/home/llg_nl/graphs/hd_s.pvd')
+# vtkfile_hd_s = File('/home/mnv/llg_nl/graphs/hd_s.pvd')
 # vtkfile_hd_s << hd_s
 
 hd_ext_expr = funcs_2.n_pair(Ly, l, Z, 0, 4)
 hd_ext = project(hd_ext_expr, FS)
-vtkfile_Hd_ext = File('/home/llg_nl/graphs/Hd_ext.pvd')
+vtkfile_Hd_ext = File('/home/mnv/llg_nl/graphs/Hd_ext.pvd')
 vtkfile_Hd_ext << hd_ext
 H_st = project(Expression(('0', '0', '-10/20*x[1]'), degree = 4),FS)
-# vtkfile_hd_ext = File('/home/llg_nl/graphs/hd.pvd')
+# vtkfile_hd_ext = File('/home/mnv/llg_nl/graphs/hd.pvd')
 # vtkfile_hd_ext << hd_ext
 
 e_f = e_v # project(e_v,FS)
@@ -411,14 +411,14 @@ hy = project(Hy_expr,FS_1)
 #u_n = Function(V)
 #u_n1, u_n2, u_n3 = split(u_n)
 #/media/mnv/A2E41E9EE41E74AF/
-vtkfile_m = File('/home/llg_nl/graphs/m.pvd')
-vtkfile_cr = File('/home/llg_nl/graphs/cross.pvd')
-vtkfile_diff = File('/home/llg_nl/graphs/diff.pvd')
-vtkfile_hd_v = File('/home/llg_nl/graphs/hd_v.pvd')
-vtkfile_hd_s = File('/home/llg_nl/graphs/hd_s.pvd')
+vtkfile_m = File('/home/mnv/llg_nl/graphs/m.pvd')
+vtkfile_cr = File('/home/mnv/llg_nl/graphs/cross.pvd')
+vtkfile_diff = File('/home/mnv/llg_nl/graphs/diff.pvd')
+vtkfile_hd_v = File('/home/mnv/llg_nl/graphs/hd_v.pvd')
+vtkfile_hd_s = File('/home/mnv/llg_nl/graphs/hd_s.pvd')
 
-vtkfile_e = File('/home/llg_nl/graphs/e.pvd')
-vtkfile_P = File('/home/llg_nl/graphs/P.pvd')
+vtkfile_e = File('/home/mnv/llg_nl/graphs/e.pvd')
+vtkfile_P = File('/home/mnv/llg_nl/graphs/P.pvd')
 # vtkfile_l = File('graphs/l.pvd')
 #vtkfile_m << m
 vtkfile_e << e_f
