@@ -474,8 +474,8 @@ def pe_EF(a,b,c,Lx,Ly,angle,file_str):
     top_elems = top_elems - np.min(top_elems)
     
     MESH = meshio.Mesh(Vert.T,[("triangle",top_elems.T)])
-    MESH.write('/home/mnv/Documents/python_doc/llg_nl/MESH.xml')
-    mesh_2 = Mesh("/home/mnv/Documents/python_doc/llg_nl/MESH.xml")
+    MESH.write('/home/mnv/llg_nl/MESH.xml')
+    mesh_2 = Mesh("/home/mnv/llg_nl/MESH.xml")
     El2 = FiniteElement('CG', triangle, 1)
     FS2 = FunctionSpace(mesh_2, El2)
     
